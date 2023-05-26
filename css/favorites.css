@@ -1,0 +1,86 @@
+body {
+    margin: 0;
+}
+
+#container {
+    padding: 50px 0;
+}
+
+#favorites-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#not-found-message {
+    display: none;
+    text-align: center;
+    font-family: 'bold';
+    color: #2d55ff;
+}
+
+.favorite-card {
+    width: 22%;
+    border-radius: 20px;
+    box-shadow: 20px 20px 60px #d9d9d9,
+                -20px -20px 60px #fff;
+    margin: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.favorite-card img {
+    cursor: pointer;
+    width: 100%;
+}
+
+.favorite-card h3 {
+    font-family: 'bold';
+    text-align: center;
+    cursor: pointer;
+}
+
+.favorite-card a {
+    text-decoration: none;
+    color: black;
+}
+
+.favorite-card button {
+    display: block;
+    width: 200px;
+    margin: auto;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'bold';
+    background-color: #878a92;
+    padding: 10px 0;
+    color: white;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 600px) {
+    #container {
+        padding: 20px 0;
+    }
+
+    #form-area {
+        width: 80%;
+    }
+
+    #form-area form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #query {
+        width: 100%;
+        margin: 0 0 10px 0;
+    }
+
+    .favorite-card {
+        width: 100%;
+    }
+}

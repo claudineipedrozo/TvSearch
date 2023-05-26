@@ -46,7 +46,7 @@ const query = $('query').value
 
           printCard(newShow)
 
-          localStorage.setItem('saveShows', JSON.stringify(results));
+          localStorage.setItem('saveShows', JSON.stringify(results))
           
         })
       })
@@ -90,15 +90,15 @@ if (saveShows) {
       id,
       name,
       imageUrl,
-    };
+    }
 
     printCard(newShow);
-  });
+  })
 }
 
 const addToFavorites = (showId) => {
   const favorites = localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : []
-
+  
   favorites.push({ id: showId })
 
   localStorage.setItem('favorites', JSON.stringify(favorites))

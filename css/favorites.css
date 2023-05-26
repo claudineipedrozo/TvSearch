@@ -12,6 +12,13 @@ body {
     justify-content: center;
 }
 
+#favorite-title {
+    margin: 10px;
+    text-align: left;
+    font-family: 'bold';
+    color: black;
+}
+
 #not-found-message {
     display: none;
     text-align: center;

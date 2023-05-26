@@ -1,21 +1,48 @@
 const API_URL = 'https://api.tvmaze.com/search/shows?'
 const $ = document.getElementById.bind(document)
 
-document.addEventListener('DOMContentLoaded', function() {
-    const favoritesArea = document.getElementById('favorites-area');
-    const favorites = localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : [];
+const query = $('query')
 
+const favorites = localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : []
+
+
+    fetch(API_URL + new URLSearchParams({ q: query })).then((response) =>
+       // Converte a resposta do serviço para JSON
+       response.json().then((favorites) => {
+        
+        $('favorites-area').innerHTML = ''
+        
     if (favorites.length === 0) {
-        favoritesArea.innerHTML = '<p>Nenhum favorito adicionado.</p>';
-        } else {
+        $('not-found-message').style.display = 'block'
+          return
+        } 
+
         favorites.forEach((show) => {
-            printFavorite(show);
+            printFavorite(show)
+        })
+        
+        
+        favorites.forEach((f) => {
+            const { show } = f
+            const { id, name, image } = show
+
+            const imageUrl = image ? image.medium : '/img/noimage.png'
+
+            const newShow = {
+                id,
+                name,
+                imageUrl,
+            }
+
+            printFavorite(newShow);
 
             localStorage.setItem('favorites', JSON.stringify(favorites))
 
         })
-    }
-})
+    
+    })
+)
+
 
 const printFavorite = (show) => {
     const posterId = `poster-${show.id}`
@@ -33,11 +60,11 @@ const printFavorite = (show) => {
 
             <button onclick="removeFromFavorites(${show.id})">Remover dos Favoritos</button>
         </div>
-    `;
+    `
 
     const favoritesArea = document.getElementById('favorites-area')
     favoritesArea.insertAdjacentHTML('beforeend', favoriteCard)
-};
+}
 
 const removeFromFavorites = (showId) => {
     let favorites = localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : []
@@ -54,6 +81,3 @@ const removeFromFavorites = (showId) => {
         favoritesArea.innerHTML = '<p>Nenhum favorito adicionado.</p>'
     }
 }
-
-
-
